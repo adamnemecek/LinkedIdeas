@@ -8,9 +8,13 @@
 
 import Cocoa
 
-class DocumentViewController: NSViewController {
+class DocumentViewController: NSSplitViewController {
   var canvasViewController: CanvasViewController! {
-    return childViewControllers.lazy.first as? CanvasViewController
+    guard let controller = childViewControllers.lazy.first as? CanvasViewController else {
+      preconditionFailure("❌ cannot access to the canvas view controller")
+    }
+
+    return controller
   }
 
   var document: Document! {
